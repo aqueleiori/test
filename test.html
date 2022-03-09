@@ -1,0 +1,27 @@
+<div class="container">
+  <h1 id="txt">Hello world !</h1>
+  <h2 id="bid"></h2>
+</div>
+<style type="text/css" media="screen">
+@import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
+.container{
+  font-family:Fredoka;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  height:100vh;
+  justify-content:center;
+}
+</style>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script charset="utf-8">
+  axios.get("http://economia.awesomeapi.com.br/json/last/USD-BRL")
+  .then((res) => {
+    let a = document.querySelector("#txt")
+    a.innerHTML = res.data.USDBRL.name
+    let b = document.querySelector("#bid")
+    b.innerHTML = parseFloat(res.data.USDBRL.bid).toFixed(2) 
+  })
+  .catch((err) => {console.log(err)})
+</script>
